@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.welcome {
+    font-family: 'Poppins', sans-serif;
+}
+
+.poppin {
+    font-family: 'Poppins', sans-serif;
+}
+
+#thintext {
+    font-weight: 100;
+    font-family: 'Poppins', sans-serif;
+}
+
+#angle{
+position: absolute;
+width: 26.99px;
+height: 30.84px;
+left: 888.84px;
+top: 449px;
+transform: rotate(89.98deg);
+
+}
+
+.g-recaptcha {
+    transform-origin: left top;
+    -webkit-transform-origin: left top;
+  }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+
+  .animate-slide-up-delay {
+    animation: slideUp 1s ease-out 0.5s;
+    animation-fill-mode: both;
+  }
+
+  .animate-fade-in-delay {
+    animation: fadeIn 1.2s ease-out 0.5s;
+    animation-fill-mode: both;
+  }
+
+  /** Dashboard **/
+
+  .rs-h{
+    height: 340px;
+  }
+
+  .rs-h::-webkit-scrollbar {
+    width: 8px;
+    }
+
+    .rs-h::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .rs-h::-webkit-scrollbar-thumb {
+        background-color: #2A3CDE;
+        border-radius: 10px;
+        border: 3px solid #D9D9D9;
+    }
+
+    .rs-h::-webkit-scrollbar-thumb:hover {
+        background-color: #404cd1;
+    }
+
+ /** Expenses **/
+
+ .e-rs-h{
+    height: 400px;
+ }
+
+ .e-rs-h::-webkit-scrollbar {
+    width: 8px;
+    }
+
+    .e-rs-h::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .e-rs-h::-webkit-scrollbar-thumb {
+        background-color: #2A3CDE;
+        border-radius: 10px;
+        border: 3px solid #D9D9D9;
+    }
+
+    .e-rs-h::-webkit-scrollbar-thumb:hover {
+        background-color: #404cd1;
+    }
+
+    .input-wrapper {
+        position: relative;
+    }
+
+    .error-message {
+        position: absolute;
+        top: 100%; /* Position below the input */
+        left: 0;
+        color: #DC2626; /* Tailwind red-600 color */
+        font-size: 0.875rem; /* Tailwind text-sm size */
+        transform: translateY(4px); /* Slight adjustment to position */
+        white-space: nowrap; /* Keeps text on one line */
+    }
+
+/** Budget **/
+
+table thead th, table tbody td {
+    width: 20%;
+}
+
+/** Sign in/ Sign up   **/
+
+.border_glow{
+    width: 303px;
+}
+
+.opacity-0 {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
