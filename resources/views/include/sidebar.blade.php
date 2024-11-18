@@ -1,10 +1,24 @@
 <aside class="bg-[#0F0B35] text-white w-1/4">
     <div class="flex mt-10 items-center space-x-4 mb-10 ml-10">
-        <div class="bg-red-100 h-24 w-24 rounded-full overflow-hidden flex">
-            <img src="{{ asset('img/dims.png') }}" alt="" class="h-auto w-auto object-cover">
+
+        <div class="relative bg-red-100 h-24 w-24 rounded-full overflow-hidden flex items-center justify-center group">
+            <!-- Profile Picture -->
+            <img src="{{ asset('img/default_avatar.jpg') }}" alt="Profile Picture" class="h-auto w-auto object-cover">
+
+            <!-- Overlay with Camera Icon -->
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <i class="fa-solid fa-camera text-white text-2xl pointer-events-none"></i>
+            </div>
+
+            <!-- Hidden File Input -->
+            <label for="profilePictureInput" class="absolute inset-0 cursor-pointer z-10"></label>
+            <input id="profilePictureInput" type="file" class="hidden" onchange="handleProfilePictureUpload(event)">
         </div>
+
+
         <div class="w-52">
-            <p class="text-2xl font-semibold">{{ (Auth::user()->first_name ?? '') . ' ' . (Auth::user()->last_name ?? '') }}</p>
+            <p class="text-2xl font-semibold">
+                {{ (Auth::user()->first_name ?? '') . ' ' . (Auth::user()->last_name ?? '') }}</p>
             <p class="text-lg font-thin">Student</p>
         </div>
     </div>

@@ -160,7 +160,7 @@
                             </div>
 
                         </div>
-                        <div class="mt-4 mb-4 justify-center text-center miscCard">
+                        <div class="mt-4 mb-4 justify-center text-center miscCard" id="miscCard">
                             <p class="text-2xl font-bold">₱0.00</p>
                         </div>
                     </div>
@@ -175,19 +175,19 @@
 
     <script>
         const categories = [{
-                name: 'misc',
+                name: 'Miscellaneous',
                 elementClass: 'miscCard'
             },
             {
-                name: 'util',
+                name: 'utilities',
                 elementClass: 'utilCard'
             },
             {
-                name: 'trans',
+                name: 'transportation',
                 elementClass: 'transCard'
             },
             {
-                name: 'shop',
+                name: 'shopping',
                 elementClass: 'shopCard'
             },
             {
@@ -199,11 +199,11 @@
                 elementClass: 'foodsCard'
             },
             {
-                name: 'ent',
+                name: 'Entertainment',
                 elementClass: 'entCard'
             },
             {
-                name: 'educ',
+                name: 'Education',
                 elementClass: 'educCard'
             }
         ];
@@ -220,8 +220,15 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    document.querySelector(`.${elementClass}`).innerHTML =
-                        `<p class="text-2xl font-bold">₱${data[category]}</p>`;
+                    // Handle response when valid category data is available
+                    const expense = data[category];
+                    if (expense) {
+                        document.querySelector(`.${elementClass}`).innerHTML =
+                            `<p class="text-2xl font-bold">₱${expense}</p>`;
+                    } else {
+                        document.querySelector(`.${elementClass}`).innerHTML =
+                            `<p class="text-2xl font-bold text-gray-500">₱0.00</p>`;
+                    }
                 })
                 .catch(error => {
                     console.error('Fetch error:', error);

@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\ExpensesController;
 use App\Http\Controllers\IncomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SummaryController;
 use Illuminate\Support\Facades\Route;
 /*
@@ -69,7 +70,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     // In routes/web.php
-Route::get('/get-all-incomes', [IncomeController::class, 'getAllIncomes'])->name('get.all.incomes');
+    Route::get('/get-all-incomes', [IncomeController::class, 'getAllIncomes'])->name('get.all.incomes');
 
 
     Route::get('/get-user-expenses/{category}', [SummaryController::class, 'categoryExpenses'])
@@ -80,6 +81,8 @@ Route::get('/get-all-incomes', [IncomeController::class, 'getAllIncomes'])->name
     Route::get('/chart-data/yesterday', [SummaryController::class, 'getYesterdayData']);
     Route::get('/chart-data/last30days', [SummaryController::class, 'getLast30DaysData']);
     Route::get('/chart-data/last1year', [SummaryController::class, 'getLast1YearData']);
+
+    Route::post('/upload-profile-picture', [ProfileController::class, 'uploadProfilePicture'])->name('upload.profile.picture');
 
 });
 

@@ -8,11 +8,13 @@
         <!-- Header -->
         <img src="{{ asset('img/logo.png') }}" class="w-auto h-16">
         <div class="text-center px-4">
+            <div class="animate-pulse">
+                <h1 id="thintext" class="text-3xl opacity-40 pb-5 md:pb-5 animate-pulse">BUDGETeer.</h1>
+                <p class="text-5xl md:text-5xl font-extrabold mt-4 text-center">Track Every Move, Build a Brighter </p>
+                <br>
+                <p class="font-bold md:text-4xl text-4xl italic">Financial Future!</p>
+            </div>
 
-            <h1 id="thintext" class="text-3xl opacity-40 pb-5 md:pb-5 animate-pulse">BUDGETeer.</h1>
-            <p class="text-5xl md:text-5xl font-extrabold mt-4 text-center">Track Every Move, Build a Brighter </p>
-            <br>
-            <p class="font-bold md:text-4xl text-4xl italic">Financial Future!</p>
         </div>
 
 

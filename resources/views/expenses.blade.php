@@ -206,8 +206,6 @@
             });
     }
 
-
-
     function addExpenses() {
         const form = document.getElementById('expenses-form');
         const formData = new FormData(form);

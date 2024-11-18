@@ -205,7 +205,7 @@ class SummaryController extends Controller
             'budget' => $budgetData
         ]);
     }
-    
+
 
 }
 
