@@ -16,8 +16,7 @@
 
     </div>
 
-    <link rel="icon" href=
-     "{{ asset('img/logo.png') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('img/logo.png') }}" type="image/x-icon">
     <div class="welcome min-h-screen flex flex-col justify-center items-center text-white">
         <!-- Header -->
 
@@ -30,26 +29,16 @@
                 <br>
                 <p class="font-bold md:text-4xl text-4xl italic">Financial Future!</p>
             </div>
-
         </div>
 
-
         <!-- Get Started Button -->
-        <br>
-        <br>
-        <br>
+        <br><br><br>
         <a href="{{ route('login') }}"
-            class="animate-fade animate-delay-[2800ms   ] mt-18 px-6 py-3 text-2xl bg-[#7B47C2] text-white font-bold rounded-lg shadow-lg hover:bg-purple-700 transition duration-300">
-            Get Started <i class="fa-solid fa-angle-right ml-2"></i>
+            class="animate-fade animate-delay-[2800ms] mt-18 px-6 py-3 text-2xl bg-[#7B47C2] text-white font-bold rounded-lg shadow-lg hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center group">
+            Get Started
+            <i
+                class="fa-solid fa-arrow-right ml-2 transition-all duration-300 ease-in-out transform group-hover:translate-x-3 "></i>
         </a>
-
-
-        {{--         <!-- Images Section -->
-        <div class="mt-12 flex justify-center">
-            <img src="{{ asset('img/group93.png') }}" alt="App Preview" class="w-83 h-72">
-        </div> --}}
     </div>
 
-    <script>
-
-    </script>
+  

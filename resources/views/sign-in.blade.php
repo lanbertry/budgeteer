@@ -85,5 +85,6 @@
         </div>
 
     </body>
+    <!-- JavaScript for Switching Messages -->
 
 @endsection

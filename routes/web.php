@@ -104,3 +104,7 @@ Route::controller(AuthManager::class)->group(function () {
 });
 
 
+Route::get('/test', function () {
+    $user = Auth::user(); // Get the authenticated user
+    return view('test'); // Pass the user to the view
+})->name('test');
