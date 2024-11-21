@@ -141,7 +141,7 @@
                 <div>
                     <div class="flex justify-between items-center mb-4">
                         <h2 class="text-xl font-semibold">Recent Transactions</h2>
-   {{--                      <a href="#" class="text-[#2A3CDE] text-sm">View all</a> --}}
+                        {{--                      <a href="#" class="text-[#2A3CDE] text-sm">View all</a> --}}
                     </div>
 
                     <ul class="space-y-4 overflow-y-auto rs-h rounded-lg scrollable">
@@ -157,14 +157,6 @@
 @endsection
 
 <script>
-    loadUserIncome();
-    dailyAllowance();
-    dailySpending();
-    dailySaving();
-    weeklyAllowance();
-    weeklySpending();
-    weeklySaving();
-
     function weeklySaving() {
         fetch('/weeklysaving', {
                 method: 'GET',
@@ -311,7 +303,7 @@
         const categoryIcons = {
             Allowance: 'fa-solid fa-wallet',
             Salary: 'fa-solid fa-money-check-dollar',
-            Stipend: 'fa-solid fa-hand-holding-fa-money-check-dollar',
+            Stipend: 'fa-solid fa-peso-sign',
             Profit: 'fa-solid fa-money-bill-trend-up',
             Savings: 'fa-solid fa-piggy-bank',
             Assistance: 'fa-solid fa-handshake-angle',
@@ -434,6 +426,13 @@
             event.preventDefault(); // Prevent default form submission
             addExpenses(); // Call the function to add expenses
         });
+        loadUserIncome();
+        dailyAllowance();
+        dailySpending();
+        dailySaving();
+        weeklyAllowance();
+        weeklySpending();
+        weeklySaving();
     });
 
     function showSuccessPopup() {
@@ -445,6 +444,4 @@
         const successPopup = document.getElementById('success-popup');
         successPopup.classList.add('hidden'); // Hide the popup
     }
-
-
 </script>

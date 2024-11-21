@@ -7,6 +7,8 @@ use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SummaryController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,20 +30,25 @@ Route::group(['middleware' => 'auth'], function () {
     //})->name('dashboard');
 
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        $user = Auth::user(); // Get the authenticated user
+        return view('dashboard', compact('user')); // Pass the user to the view
     })->name('dashboard');
 
+
     Route::get('/expenses', function () {
-        return view('expenses');
+        $user = Auth::user(); // Get the authenticated user
+        return view('expenses', compact('user')); // Pass the user to the view
     })->name('expenses');
 
     Route::get('/summary', function () {
-        return view('summary');
+        $user = Auth::user(); // Get the authenticated user
+        return view('summary', compact('user')); // Pass the user to the view
     })->name('summary');
     // ->middleware('verify_email');
 
     Route::get('/budget', function () {
-        return view('budget');
+        $user = Auth::user(); // Get the authenticated user
+        return view('budget', compact('user'));
     })->name('budget');
 
 
@@ -83,6 +90,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/chart-data/last1year', [SummaryController::class, 'getLast1YearData']);
 
     Route::post('/upload-profile-picture', [ProfileController::class, 'uploadProfilePicture'])->name('upload.profile.picture');
+
 
 });
 

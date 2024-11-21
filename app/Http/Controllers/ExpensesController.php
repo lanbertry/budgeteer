@@ -11,31 +11,37 @@ class ExpensesController extends Controller
 {
     public function getUserExpenses(Request $request)
     {
-        // Log filter parameters to check if they are received as expected
-        Log::info('Filter parameters:', $request->only(['date', 'type', 'amount']));
-
         $user_id = auth()->user()->id;
-        $query = DB::table('expenses')->where('user_id', $user_id);
+        $limit = $request->input('limit', 10);
+        $page = $request->input('page', 1);
 
-        // Apply date filter if provided
+        $query = Expenses::where('user_id', $user_id);
+
         if ($request->filled('date')) {
-            $query->whereDate('date', '=', $request->input('date'));
+            $query->whereDate('date', $request->input('date'));
         }
 
-        // Apply type filter if provided
         if ($request->filled('category')) {
-            $query->where('category', '=', $request->input('category'));
+            $query->where('category', $request->input('category'));
         }
 
-        // Apply amount filter if provided
         if ($request->filled('amount')) {
-            $query->where('amount', '=', $request->input('amount'));
+            $query->where('amount', $request->input('amount'));
         }
 
-        $userExpenses = $query->get();
+        $userExpenses = $query->paginate($limit, ['*'], 'page', $page);
 
-        return response()->json(['user' => $userExpenses]);
+        return response()->json([
+            'user' => $userExpenses->items(),
+            'pagination' => [
+                'current_page' => $userExpenses->currentPage(),
+                'total_pages' => $userExpenses->lastPage(),
+            ],
+        ]);
+
     }
+
+
 
 
 

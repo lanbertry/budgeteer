@@ -1,6 +1,8 @@
 import Chart from 'chart.js/auto';
 import './bootstrap';
 import 'flowbite';
+import '@fortawesome/fontawesome-free/js/fontawesome';
+import '@fortawesome/fontawesome-free/js/solid';
 window.Chart = Chart;
 
 // Resize reCAPTCHA to fit a specific size. We're scaling using CSS3 transforms ||| captchaScale = containerWidth / elementWidth
@@ -31,3 +33,5 @@ function scaleCaptcha(elementWidth) {
     // Uses jQuery throttle plugin to limit strain on the browser
     $(window).resize( $.throttle( 100, scaleCaptcha ) );
   });
+
+

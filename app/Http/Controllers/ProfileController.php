@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,7 +16,8 @@ class ProfileController extends Controller
             'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $user = auth()->user(); // Get the authenticated user
+        // Get the authenticated user
+        $user = auth()->user(); // Make sure the user is authenticated
 
         // Handle the file upload
         if ($request->hasFile('profile_picture')) {
@@ -26,8 +28,8 @@ class ProfileController extends Controller
             $path = $request->file('profile_picture')->storeAs('profile_pictures', $filename, 'public');
 
             // Update the user's profile picture in the database
-            $user->profile_picture = $path;
-            $user->save();
+            $user->profile_picture = $path; // Update the profile_picture column in the users table
+            $user->save(); // Save the updated user model
 
             return response()->json([
                 'success' => true,

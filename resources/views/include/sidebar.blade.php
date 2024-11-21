@@ -1,12 +1,16 @@
+{{-- @vite(['resources/js/sidebar.js']) --}}
 <aside class="bg-[#0F0B35] text-white w-1/4">
     <div class="flex mt-10 items-center space-x-4 mb-10 ml-10">
 
         <div class="relative bg-red-100 h-24 w-24 rounded-full overflow-hidden flex items-center justify-center group">
             <!-- Profile Picture -->
-            <img src="{{ asset('img/default_avatar.jpg') }}" alt="Profile Picture" class="h-auto w-auto object-cover">
+            <img src="{{ $user->profile_picture_url }}" alt="Profile Picture" class="h-auto w-auto object-cover">
+
+
 
             <!-- Overlay with Camera Icon -->
-            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div
+                class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <i class="fa-solid fa-camera text-white text-2xl pointer-events-none"></i>
             </div>
 
@@ -58,3 +62,31 @@
         </ul>
     </nav>
 </aside>
+<script>
+    function handleProfilePictureUpload(event) {
+        const file = event.target.files[0];
+
+        if (file) {
+            const formData = new FormData();
+            formData.append('profile_picture', file);
+
+            fetch('/upload-profile-picture', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(data.message);
+                        document.querySelector('img').src = data.profile_picture_url; // Update the profile picture
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    }
+</script>
