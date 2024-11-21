@@ -79,7 +79,6 @@ Route::group(['middleware' => 'auth'], function () {
     // In routes/web.php
     Route::get('/get-all-incomes', [IncomeController::class, 'getAllIncomes'])->name('get.all.incomes');
 
-
     Route::get('/get-user-expenses/{category}', [SummaryController::class, 'categoryExpenses'])
         ->name('get.user.expenses');
 
@@ -90,7 +89,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/chart-data/last1year', [SummaryController::class, 'getLast1YearData']);
 
     Route::post('/upload-profile-picture', [ProfileController::class, 'uploadProfilePicture'])->name('upload.profile.picture');
-
 
 });
 

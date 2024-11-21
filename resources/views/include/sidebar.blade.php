@@ -1,5 +1,15 @@
 {{-- @vite(['resources/js/sidebar.js']) --}}
 <aside class="bg-[#0F0B35] text-white w-1/4">
+
+    <div class="pb-5 md:pb-5 p-5 px-10">
+        <div class="flex">
+            <img src="{{ asset('img/logo.png') }}" class="h-7 w-7">
+            <h1 class="text-lg font-thin opacity-80">BUDGETeer.</h1>
+        </div>
+
+        <p class="text-sm">Track, Save, and Succeed!</p>
+    </div>
+
     <div class="flex mt-10 items-center space-x-4 mb-10 ml-10">
 
         <div class="relative bg-red-100 h-24 w-24 rounded-full overflow-hidden flex items-center justify-center group">
