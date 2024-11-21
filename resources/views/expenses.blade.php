@@ -33,7 +33,7 @@
                 <div class="ml-3 text-sm font-normal">Expenses added successfully.</div>
                 <button type="button" onclick="closeSuccessPopup()"
                     class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
-                    data-dismiss-target="#success-popup" aria-label="Close">
+                   {{--  data-dismiss-target="#success-popup" --}} aria-label="Close">
                     <span class="sr-only">Close</span>
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 14 14">
@@ -289,61 +289,65 @@
         });
 
         function addExpenses() {
-    const form = document.getElementById("expenses-form");
-    const formData = new FormData(form);
+            const form = document.getElementById("expenses-form");
+            const formData = new FormData(form);
 
-    document.querySelectorAll(".error-message").forEach((el) => el.remove());
+            document.querySelectorAll(".error-message").forEach((el) => el.remove());
 
-    fetch("/expensesadd", {
-        method: "POST",
-        body: formData,
-        headers: {
-            "X-CSRF-TOKEN": "{{ csrf_token() }}",
-            Accept: "application/json",
-        },
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.errors) {
-                console.error("Validation Errors:", data.errors);
-                Object.keys(data.errors).forEach((field) => {
-                    const inputWrapper = document
-                        .querySelector(`[name="${field}"]`)
-                        .closest(".input-wrapper");
-                    if (inputWrapper) {
-                        const errorMessage = document.createElement("p");
-                        errorMessage.classList.add("error-message");
-                        errorMessage.innerText = data.errors[field][0];
-                        inputWrapper.appendChild(errorMessage);
+            fetch("/expensesadd", {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                        Accept: "application/json",
+                    },
+                })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.errors) {
+                        console.error("Validation Errors:", data.errors);
+                        Object.keys(data.errors).forEach((field) => {
+                            const inputWrapper = document
+                                .querySelector(`[name="${field}"]`)
+                                .closest(".input-wrapper");
+                            if (inputWrapper) {
+                                const errorMessage = document.createElement("p");
+                                errorMessage.classList.add("error-message");
+                                errorMessage.innerText = data.errors[field][0];
+                                inputWrapper.appendChild(errorMessage);
+                            }
+                        });
+                    } else {
+                        console.log("Expense added successfully");
+
+                        // Show success pop-up
+                        const successPopup = document.getElementById("success-popup");
+                        successPopup.classList.remove("hidden");
+
+                        // Hide the success pop-up after a delay
+                        setTimeout(() => {
+                            successPopup.classList.add("hidden");
+                        }, 10000); // Adjust the time (in milliseconds) as needed
+
+                        form.reset();
+                        currentPage = 1;
+                        container.innerHTML = "";
+
+                        loadUserExpenses();
                     }
+                })
+                .catch((error) => {
+                    console.error("Error adding expense:", error);
                 });
-            } else {
-                console.log("Expense added successfully");
-
-                // Show success pop-up
-                const successPopup = document.getElementById("success-popup");
-                successPopup.classList.remove("hidden");
-
-                // Hide the success pop-up after a delay
-                setTimeout(() => {
-                    successPopup.classList.add("hidden");
-                }, 10000); // Adjust the time (in milliseconds) as needed
-
-                form.reset();
-                currentPage = 1;
-                container.innerHTML = "";
-
-                loadUserExpenses();
-            }
-        })
-        .catch((error) => {
-            console.error("Error adding expense:", error);
-        });
-}
+        }
 
 
         container.addEventListener("scroll", handleScroll);
         loadUserExpenses();
     });
 
+    function closeSuccessPopup() {
+        const successPopup = document.getElementById('success-popup');
+        successPopup.classList.add('hidden'); // Hide the popup
+    }
 </script>
