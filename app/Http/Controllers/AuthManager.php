@@ -34,12 +34,13 @@ class AuthManager extends Controller
     function loginPost(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|exists:users,email',
+            'email' => 'required|email|exists:users',
             'password' => 'required|min:6',
-           /*  'g-recaptcha-response' => 'required|captcha', */
+            'g-recaptcha-response' => 'required|captcha',
         ]);
 
         $credentials = $request->only('email', 'password');
+        $remember = $request->has('remember');
 
         if (Auth::attempt($credentials)) {
 
@@ -63,7 +64,7 @@ class AuthManager extends Controller
             // 'password' => [Password::min(8)->mixedCase()->numbers()->symbols()->uncompromised(), 'required', 'confirmed'],
             'password' => 'required|confirmed|min:6',
             'password_confirmation' => 'required',
-     /*        'g-recaptcha-response' => 'required|captcha', */
+            'g-recaptcha-response' => 'required|captcha',
         ]);
 
         $data['first_name'] = $request->first_name;
@@ -86,7 +87,7 @@ class AuthManager extends Controller
                     $message->subject("Verify Email");
                 }); */
 
-        return redirect(route('login'))->with("success", "Registration Success! We have sent a link to verify your email.");
+        return redirect(route('login'))->with("success", "Account Sucessfully Created!");
 
     }
 

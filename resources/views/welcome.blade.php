@@ -37,8 +37,7 @@
             class="animate-fade animate-delay-[2800ms] mt-18 px-6 py-3 text-2xl bg-[#7B47C2] text-white font-bold rounded-lg shadow-lg hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center group">
             Get Started
             <i
-                class="fa-solid fa-arrow-right ml-2 transition-all duration-300 ease-in-out transform group-hover:translate-x-3 "></i>
+                class="fa-solid fa-arrow-right ml-2 transition-all duration-300 ease-in-out transform group-hover:translate-x-3  "></i>
         </a>
     </div>
 
-  

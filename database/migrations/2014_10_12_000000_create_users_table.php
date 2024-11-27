@@ -20,7 +20,9 @@ return new class extends Migration {
             $table->string('verification_token')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->string('profile_picture')->nullable(); // Add this line for the profile picture
+            $table->string('profile_picture')->nullable(); // For profile picture
+            $table->string('provider')->nullable(); // For social login provider
+            $table->string('provider_id')->nullable(); // For social login provider ID
             $table->timestamps();
         });
     }

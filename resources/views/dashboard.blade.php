@@ -85,7 +85,7 @@
                         <i class="fa-solid fa-arrow-trend-down text-4xl text-[#B8001F]"></i>
                     </div>
                     <div class="ml-3">
-                        <p class="font-semibold">Weekly Speding</p>
+                        <p class="font-semibold">Weekly Spending</p>
                         <p class="text-3xl font-semibold weeklySpending">₱0.00</p>
                     </div>
                 </div>

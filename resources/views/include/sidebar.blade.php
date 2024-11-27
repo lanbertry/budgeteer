@@ -8,11 +8,15 @@
         </div>
 
         <p class="text-sm">Track, Save, and Succeed!</p>
+
     </div>
+
+    <hr class="">
 
     <div class="flex mt-10 items-center space-x-4 mb-10 ml-10">
 
-        <div class="relative bg-red-100 h-24 w-24 rounded-full overflow-hidden flex items-center justify-center group">
+        <div
+            class="profilepic relative bg-red-100 h-24 w-24 rounded-full overflow-hidden flex items-center justify-center group">
             <!-- Profile Picture -->
             <img src="{{ $user->profile_picture_url }}" alt="Profile Picture" class="h-auto w-auto object-cover">
 
@@ -37,6 +41,7 @@
         </div>
     </div>
 
+    <hr class="mb-10">
     <nav class="">
         <ul class="">
             <li class="py-3 hover:bg-[#2A2C5A] px-10 {{ request()->is('dashboard*') ? 'bg-[#2A2C5A]' : '' }}">
@@ -72,6 +77,7 @@
         </ul>
     </nav>
 </aside>
+
 <script>
     function handleProfilePictureUpload(event) {
         const file = event.target.files[0];
@@ -90,8 +96,13 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        alert(data.message);
-                        document.querySelector('img').src = data.profile_picture_url; // Update the profile picture
+                        /* alert(data.message); */
+
+                        // Update only the profile picture
+                        const profilePic = document.querySelector('.profilepic img');
+                        if (profilePic) {
+                            profilePic.src = data.profile_picture_url;
+                        }
                     } else {
                         alert(data.message);
                     }

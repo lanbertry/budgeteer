@@ -1,8 +1,9 @@
-import Chart from 'chart.js/auto';
-import './bootstrap';
-import 'flowbite';
 import '@fortawesome/fontawesome-free/js/fontawesome';
+import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/solid';
+import Chart from 'chart.js/auto';
+import 'flowbite';
+import './bootstrap';
 window.Chart = Chart;
 
 // Resize reCAPTCHA to fit a specific size. We're scaling using CSS3 transforms ||| captchaScale = containerWidth / elementWidth

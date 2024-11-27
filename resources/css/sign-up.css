@@ -1,0 +1,17 @@
+.relative {
+    position: relative;
+}
+
+button#toggle-password {
+    position: absolute;
+    top: 50%; /* Vertically center */
+    right: 0.75rem; /* Align with input padding */
+    transform: translateY(-50%);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+button#toggle-password i {
+    font-size: 1.25rem; /* Adjust icon size */
+}

@@ -1,7 +1,7 @@
 @extends('include/layout')
 @section('title', 'Budgeteer')
 @section('content')
-    @vite(['resources/js/sign-up.js'])
+    @vite(['resources/js/sign-up.js', 'resources/js/sign-up.css'])
 
     <body class="bg-[#0F0B35] poppin">
 
@@ -32,6 +32,38 @@
 
             </div>
 
+            @if ($errors->any())
+            <div id="error-popup"
+                class="fixed right-4 top-4 p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 max-w-lg animate-shake shadow-lg"
+                role="alert">
+                <div class="flex items-start">
+                    <svg class="flex-shrink-0 inline w-5 h-5 mr-3 mt-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                    </svg>
+                    <div>
+                        <span class="font-medium">Ensure that these requirements are met:</span>
+                        <ul class="mt-1.5 list-disc list-inside">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                <button type="button"
+                    class="absolute top-2 right-2 text-red-500 hover:text-red-900 rounded-lg focus:ring-2 focus:ring-red-300 p-1.5 hover:bg-red-100 inline-flex items-center justify-center h-8 w-8 dark:text-red-500 dark:hover:text-white dark:bg-red-800 dark:hover:bg-red-700"
+                    data-dismiss-target="#error-popup" aria-label="Close">
+                    <span class="sr-only">Close</span>
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                </button>
+            </div>
+        @endif
+
             <!-- Right Side: Create Account Form -->
             <div
                 class="w-full md:w-2/3 bg-white flex flex-col justify-center items-center rounded-t-3xl md:rounded-l-3xl md:rounded-t-nonet  md:mt-0 p-5 md:p-0">
@@ -52,7 +84,7 @@
                                 <input autocomplete="off" type="text" id="first_name" name="first_name"
                                     placeholder="First Name"
                                     class="placeholder-black w-full p-3 border border-[#CFCECE] rounded-md focus:outline-none focus:border-purple-600 @error('first_name') border-red-500 @enderror">
-{{--                                 @error('first_name')
+                                {{--                                 @error('first_name')
                                     <p class="error-message text-red-500 text-xs absolute mt-1">{{ $message }}</p>
                                 @enderror --}}
                             </div>
@@ -73,7 +105,7 @@
                                 onfocus="toggleValidation(true, 'email')" onblur="toggleValidation(false, 'email')"
                                 oninput="validateEmail()">
 
-{{--                             @error('email')
+                            {{--                             @error('email')
                                 <p class="error-message text-red-500 text-xs absolute">{{ $message }}</p>
                             @enderror --}}
                             <!-- Validation Messages with Icons -->
@@ -94,11 +126,20 @@
 
                         <div class="relative">
 
-                            <input readonly type="password" id="password" name="password" placeholder="Password"
-                                class="placeholder-black w-full p-3 border border-[#CFCECE] rounded focus:outline-none focus:border-purple-600 @error('password') border-red-500 @enderror"
-                                onfocus="toggleValidation(true, 'password'), this.removeAttribute('readonly');"
-                                onblur="toggleValidation(false, 'password')" oninput="validatePassword()"
-                                autocomplete="off">
+                            <div class="relative">
+                                <input readonly type="password" id="password" name="password" placeholder="Password"
+                                    class="placeholder-black w-full p-3 border border-[#CFCECE] rounded focus:outline-none focus:border-purple-600 @error('password') border-red-500 @enderror"
+                                    onfocus="toggleValidation(true, 'password'), this.removeAttribute('readonly');"
+                                    onblur="toggleValidation(false, 'password')" oninput="validatePassword()"
+                                    autocomplete="off" />
+                                <button type="button" id="toggle-password"
+                                    class="absolute top-1/2 right-3 transform -translate-y-1/2 flex items-center text-gray-500 focus:outline-none"
+                                    onclick="togglePassword()">
+                                    <i id="eye-icon" class="fa-solid fa-eye h-6 w-6"></i>
+                                </button>
+                            </div>
+
+
                             <ul id="password-validation-messages"
                                 class="list-disc pl-5 text-sm space-y-1 mt-2 transition-all duration-300 max-h-0 overflow-hidden">
                                 <li id="min-length" class="flex items-center text-red-500">
@@ -137,12 +178,23 @@
                             @enderror --}}
                         </div>
 
+
                         <div class="relative">
-                            <input autocomplete="off" type="password" id="confirm_password" name="password_confirmation"
-                                placeholder="Confirm Password"
-                                class="placeholder-black w-full p-3 border border-[#CFCECE] rounded mt-1 focus:outline-none focus:border-purple-600 @error('password_confirmation') border-red-500 @enderror"
-                                onfocus="toggleValidation(true, 'confirm-password')"
-                                onblur="toggleValidation(false, 'confirm-password')" oninput="validateConfirmPassword()">
+                            <div class="relative">
+                                <input type="password" id="confirm_password" name="password_confirmation"
+                                    placeholder="Confirm Password"
+                                    class="placeholder-black w-full p-3 border border-[#CFCECE] rounded focus:outline-none focus:border-purple-600 @error('password_confirmation') border-red-500 @enderror"
+                                    onfocus="toggleValidation(true, 'confirm-password')"
+                                    onblur="toggleValidation(false, 'confirm-password')"
+                                    oninput="validateConfirmPassword()" />
+                                <button type="button" id="toggle-confirm-password"
+                                    class="absolute top-1/2 right-3 transform -translate-y-1/2 flex items-center text-gray-500 focus:outline-none"
+                                    onclick="toggleConfirmPassword()">
+                                    <i id="confirm-eye-icon" class="fa-solid fa-eye h-6 w-6"></i>
+                                </button>
+                            </div>
+
+
                             <!-- Validation Messages with Icons -->
                             <ul id="confirm-password-validation-messages"
                                 class="list-disc pl-5 text-sm space-y-1 mt-2 transition-all duration-300 max-h-0 overflow-hidden">
@@ -184,6 +236,33 @@
 
     </body>
     <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const eyeIcon = document.getElementById('eye-icon');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                eyeIcon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                eyeIcon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+
+        function toggleConfirmPassword() {
+            const confirmPasswordField = document.getElementById('confirm_password');
+            const confirmEyeIcon = document.getElementById('confirm-eye-icon');
+
+            if (confirmPasswordField.type === 'password') {
+                confirmPasswordField.type = 'text';
+                confirmEyeIcon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                confirmPasswordField.type = 'password';
+                confirmEyeIcon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+
+
         // Toggles visibility of validation messages
         function toggleValidation(show, type) {
             const validationMessages = document.getElementById(`${type}-validation-messages`);
