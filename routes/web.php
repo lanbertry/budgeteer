@@ -80,7 +80,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/get-all-incomes', [IncomeController::class, 'getAllIncomes'])->name('get.all.incomes');
 
     Route::get('/get-user-expenses/{category}', [SummaryController::class, 'categoryExpenses'])
-        ->name('get.user.expenses');
+        ->name('get.user.expenses.category');
 
     Route::get('/chart-data/last7days', [SummaryController::class, 'getLast7DaysData']);
     Route::get('/chart-data/today', [SummaryController::class, 'getTodayData']);

@@ -1,7 +1,7 @@
 @extends('include/layout')
 @section('title', 'Budgeteer')
 @section('content')
-    @vite(['resources/js/sign-up.js', 'resources/js/sign-up.css'])
+    @vite(['resources/js/sign-up.js', 'resources/css/sign-up.css'])
 
     <body class="bg-[#0F0B35] poppin">
 
@@ -150,7 +150,7 @@
                                                 d="M6 18L18 6M6 6l12 12" />
                                         </svg>
                                     </span>
-                                    Minimum 8 characters
+                                    Minimum 6 characters
                                 </li>
                                 <li id="special-char" class="flex items-center text-red-500">
                                     <span class="mr-2" id="special-char-icon">

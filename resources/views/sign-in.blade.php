@@ -1,6 +1,7 @@
 @extends('include/layout')
 @section('title', 'Budgeteer')
 @section('content')
+    @vite(['resources/css/sign-in.css'])
 
     <body class="bg-[#0F0B35] poppin">
 
@@ -222,15 +223,4 @@
         }
     </script>
 
-    <style>
-        #success-popup {
-            z-index: 9999;
-            /* Makes sure the popup is always on top */
-        }
-
-        #error-popup {
-            z-index: 9999;
-            /* Makes sure the popup is always on top */
-        }
-    </style>
 @endsection

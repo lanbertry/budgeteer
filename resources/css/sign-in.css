@@ -1,0 +1,9 @@
+#success-popup {
+    z-index: 9999;
+    /* Makes sure the popup is always on top */
+}
+
+#error-popup {
+    z-index: 9999;
+    /* Makes sure the popup is always on top */
+}

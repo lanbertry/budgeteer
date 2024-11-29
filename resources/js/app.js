@@ -1,6 +1,6 @@
-import '@fortawesome/fontawesome-free/js/fontawesome';
+/* import '@fortawesome/fontawesome-free/js/fontawesome';
 import '@fortawesome/fontawesome-free/js/regular';
-import '@fortawesome/fontawesome-free/js/solid';
+import '@fortawesome/fontawesome-free/js/solid'; */
 import Chart from 'chart.js/auto';
 import 'flowbite';
 import './bootstrap';

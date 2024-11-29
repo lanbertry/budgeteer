@@ -61,8 +61,8 @@ class AuthManager extends Controller
             'first_name' => 'required|min:2',
             'last_name' => 'required|min:2',
             'email' => 'required|email|unique:users',
-            // 'password' => [Password::min(8)->mixedCase()->numbers()->symbols()->uncompromised(), 'required', 'confirmed'],
-            'password' => 'required|confirmed|min:6',
+            'password' => [Password::min(6)->mixedCase()->numbers()->symbols()->uncompromised(), 'required', 'confirmed'],
+            //'password' => 'required|confirmed|min:6',
             'password_confirmation' => 'required',
             'g-recaptcha-response' => 'required|captcha',
         ]);

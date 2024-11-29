@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="px-2">
                                     <i class="fa-solid fa-circle text-[#0F0B35]"></i>
-                                    <span class="text-base">Speding</span>
+                                    <span class="text-base">Spending</span>
                                 </div>
                                 <div class="px-2">
                                     <i class="fa-solid fa-circle text-[#7B47C2]"></i>
